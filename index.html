@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrenchWords</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>FrenchWords</h1>
+            <nav>
+                <button class="nav-btn active" data-section="flashcards">Карточки</button>
+                <button class="nav-btn" data-section="quiz">Тесты</button>
+                <button class="nav-btn" data-section="dictionary">Словарь</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Раздел с карточками -->
+            <section id="flashcards" class="section active">
+                <div class="controls">
+                    <select id="deck-select">
+                        <option value="avoir-etre">Avoir и Être</option>
+                        <option value="custom">Мой словарь</option>
+                    </select>
+                </div>
+                
+                <div class="flashcard-container">
+                    <div class="flashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <p class="card-text">Фронтальная сторона</p>
+                            </div>
+                            <div class="flashcard-back">
+                                <p class="card-text">Обратная сторона</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-navigation">
+                        <button id="prev-card">←</button>
+                        <span id="card-counter">1/10</span>
+                        <button id="next-card">→</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Раздел с тестами -->
+            <section id="quiz" class="section">
+                <div class="controls">
+                    <select id="quiz-type">
+                        <option value="multiple-choice">Выбор ответа</option>
+                        <option value="text-input">Ввод текста</option>
+                    </select>
+                    
+                    <select id="quiz-deck">
+                        <option value="avoir-etre">Avoir и Être</option>
+                        <option value="custom">Мой словарь</option>
+                    </select>
+                    
+                    <button id="start-quiz">Начать тест</button>
+                </div>
+                
+                <div class="quiz-container">
+                    <div id="question-container">
+                        <h3 id="question">Выберите тип теста и нажмите "Начать тест"</h3>
+                        
+                        <!-- Контейнер для вариантов ответа -->
+                        <div id="multiple-choice-container" class="hidden">
+                            <div class="options-grid"></div>
+                        </div>
+                        
+                        <!-- Контейнер для ввода текста -->
+                        <div id="text-input-container" class="hidden">
+                            <input type="text" id="answer-input" placeholder="Введите ответ">
+                            <button id="check-answer">Проверить</button>
+                        </div>
+                    </div>
+                    
+                    <div id="feedback" class="hidden">
+                        <p id="feedback-text"></p>
+                        <button id="next-question">Следующий вопрос</button>
+                    </div>
+                    
+                    <div id="quiz-results" class="hidden">
+                        <h3>Результаты теста</h3>
+                        <p id="score"></p>
+                        <button id="restart-quiz">Пройти еще раз</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Раздел со словарем -->
+            <section id="dictionary" class="section">
+                <div class="dictionary-controls">
+                    <div class="dict-input-group">
+                        <input type="text" id="french-word" placeholder="Французское слово">
+                        <input type="text" id="russian-translation" placeholder="Русский перевод">
+                        <button id="add-word">Добавить</button>
+                    </div>
+                    
+                    <div class="import-export">
+                        <button id="import-btn">Импорт</button>
+                        <button id="export-btn">Экспорт</button>
+                        <input type="file" id="import-file" accept=".json,.csv" style="display: none;">
+                    </div>
+                </div>
+                <div class="batch-add-section">
+									<button id="show-batch-add" class="secondary-btn">Добавить слова пачкой</button>
+									
+									<div id="batch-add-container" class="hidden">
+											<h3>Добавление пачкой слов</h3>
+											<p class="hint">Введите слова в формате: "французское слово;русский перевод" (по одной паре на строку)</p>
+											
+											<textarea id="batch-words" rows="6" placeholder="exemple;пример
+							bonjour;здравствуйте
+							merci;спасибо"></textarea>
+											
+											<div class="batch-controls">
+													<button id="add-batch-words">Добавить все</button>
+													<button id="clear-batch" class="secondary-btn">Очистить</button>
+											</div>
+									</div>
+							</div>
+                <div class="dictionary-container">
+                    <div class="search-bar">
+                        <input type="text" id="search-dictionary" placeholder="Поиск в словаре">
+                    </div>
+                    
+                    <table id="dictionary-table">
+                        <thead>
+                            <tr>
+                                <th>Французский</th>
+                                <th>Русский</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dictionary-list"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

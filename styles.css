@@ -1,0 +1,377 @@
+:root {
+	--primary-color: #2b6cb0;
+	--secondary-color: #3182ce;
+	--accent-color: #e53e3e;
+	--light-color: #f7fafc;
+	--dark-color: #2d3748;
+	--success-color: #38a169;
+	--error-color: #e53e3e;
+	--border-radius: 8px;
+	--box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	--transition: all 0.3s ease;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background-color: #f5f7fa;
+	color: var(--dark-color);
+	line-height: 1.6;
+}
+
+.app-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 2rem;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+
+h1 {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+	color: var(--primary-color);
+}
+
+nav {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.nav-btn {
+	background: none;
+	border: none;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	font-weight: 500;
+	color: var(--dark-color);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	transition: var(--transition);
+}
+
+.nav-btn:hover {
+	background-color: rgba(49, 130, 206, 0.1);
+}
+
+.nav-btn.active {
+	background-color: var(--primary-color);
+	color: white;
+}
+
+.section {
+	display: none;
+	background-color: white;
+	border-radius: var(--border-radius);
+	padding: 2rem;
+	box-shadow: var(--box-shadow);
+}
+
+.section.active {
+	display: block;
+}
+
+.controls {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+select, button, input {
+	padding: 0.5rem 1rem;
+	border-radius: var(--border-radius);
+	border: 1px solid #e2e8f0;
+	font-size: 1rem;
+	font-family: inherit;
+}
+
+select {
+	background-color: white;
+}
+
+button {
+	background-color: var(--primary-color);
+	color: white;
+	cursor: pointer;
+	transition: var(--transition);
+	border: none;
+}
+
+button:hover {
+	background-color: var(--secondary-color);
+}
+
+/* Стили для карточек */
+.flashcard-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+}
+
+.flashcard {
+	width: 100%;
+	max-width: 400px;
+	height: 250px;
+	perspective: 1000px;
+}
+
+.flashcard-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.6s;
+	transform-style: preserve-3d;
+	box-shadow: var(--box-shadow);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+}
+
+.flashcard.flipped .flashcard-inner {
+	transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	border-radius: var(--border-radius);
+}
+
+.flashcard-front {
+	background-color: var(--light-color);
+}
+
+.flashcard-back {
+	background-color: var(--primary-color);
+	color: white;
+	transform: rotateY(180deg);
+}
+
+.card-text {
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+.card-navigation {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.card-navigation button {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	padding: 0;
+}
+
+/* Стили для тестов */
+.quiz-container {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.options-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+.option-btn {
+	padding: 1rem;
+	border: 1px solid #e2e8f0;
+	background-color: var(--light-color);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	transition: var(--transition);
+	text-align: left;
+}
+
+.option-btn:hover {
+	background-color: rgba(49, 130, 206, 0.1);
+}
+
+.option-btn.correct {
+	background-color: var(--success-color);
+	color: white;
+}
+
+.option-btn.incorrect {
+	background-color: var(--error-color);
+	color: white;
+}
+
+#text-input-container {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+#answer-input {
+	flex: 1;
+}
+
+#feedback {
+	margin-top: 2rem;
+	padding: 1rem;
+	border-radius: var(--border-radius);
+	text-align: center;
+}
+
+#feedback.correct {
+	background-color: rgba(56, 161, 105, 0.1);
+	color: var(--success-color);
+}
+
+#feedback.incorrect {
+	background-color: rgba(229, 62, 62, 0.1);
+	color: var(--error-color);
+}
+
+#quiz-results {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+/* Стили для словаря */
+.dictionary-controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2rem;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.dict-input-group {
+	display: flex;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.import-export {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.search-bar {
+	margin-bottom: 1rem;
+}
+
+#search-dictionary {
+	width: 100%;
+}
+
+#dictionary-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#dictionary-table th, #dictionary-table td {
+	padding: 0.75rem;
+	text-align: left;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.action-btn {
+	background: none;
+	border: none;
+	color: var(--primary-color);
+	cursor: pointer;
+}
+
+.action-btn.delete {
+	color: var(--error-color);
+}
+
+.hidden {
+	display: none !important;
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 768px) {
+	.app-container {
+			padding: 1rem;
+	}
+	
+	.controls, .dictionary-controls {
+			flex-direction: column;
+			align-items: stretch;
+	}
+	
+	.options-grid {
+			grid-template-columns: 1fr;
+	}
+	
+	#text-input-container {
+			flex-direction: column;
+	}
+}
+
+/* Стили для пакетного добавления */
+.batch-add-section {
+	margin: 1.5rem 0;
+	width: 100%;
+}
+
+#batch-add-container {
+	margin-top: 1rem;
+	padding: 1rem;
+	background-color: var(--light-color);
+	border-radius: var(--border-radius);
+}
+
+#batch-words {
+	width: 100%;
+	padding: 0.75rem;
+	border: 1px solid #e2e8f0;
+	border-radius: var(--border-radius);
+	font-family: inherit;
+	margin: 0.5rem 0;
+	resize: vertical;
+}
+
+.batch-controls {
+	display: flex;
+	gap: 0.75rem;
+	margin-top: 0.5rem;
+}
+
+.hint {
+	font-size: 0.9rem;
+	color: #718096;
+	margin-bottom: 0.5rem;
+}
+
+.secondary-btn {
+	background-color: #e2e8f0;
+	color: var(--dark-color);
+}
+
+.secondary-btn:hover {
+	background-color: #cbd5e0;
+}
+
